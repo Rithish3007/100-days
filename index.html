@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Zoe & Jim — Romantic Scrapbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#f2bfc6;--pink2:#f8d6da;--ink:#4a3034;--cream:#fff8ec;--red:#a74753}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#f2bfc6}
+body{font-family:"Cormorant Garamond",serif;color:var(--ink);overflow:hidden}
+button,input{font:inherit}.app{position:relative;min-height:100svh;overflow:hidden;background:
+radial-gradient(circle at 16% 35%,rgba(255,255,255,.18),transparent 28%),
+radial-gradient(circle at 82% 75%,rgba(125,54,63,.12),transparent 35%),
+linear-gradient(135deg,var(--pink2),var(--pink))}
+.app:before{content:"";position:absolute;inset:0;opacity:.13;pointer-events:none;background:
+repeating-linear-gradient(0deg,rgba(70,35,39,.09) 0 1px,transparent 1px 4px),
+repeating-linear-gradient(90deg,rgba(255,255,255,.12) 0 1px,transparent 1px 6px)}
+.grain{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.stage{position:relative;width:min(94vw,900px);height:min(92svh,1120px);margin:auto;top:50%;transform:translateY(-50%)}
+.title{position:absolute;left:8%;top:8%;z-index:8;line-height:.72;animation:titleIn 1.3s .2s both cubic-bezier(.22,1,.36,1)}
+.title .n{font-size:clamp(3.5rem,13vw,7rem);font-weight:500;letter-spacing:-.05em}
+.title .amp{font:500 clamp(1.6rem,4vw,2.7rem) Caveat;color:#a34b58;margin:.28em 0;transform:rotate(-8deg)}
+.subtitle{font:400 clamp(1rem,3vw,1.5rem) Caveat;margin-top:20px;letter-spacing:.03em}
+@keyframes titleIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+/* THE FLOWER METEOR */
+.meteor{position:absolute;z-index:20;left:0;top:0;width:160px;height:160px;opacity:0;pointer-events:none}
+.meteor .head{position:absolute;inset:0;width:160px;height:160px;object-fit:contain;filter:drop-shadow(0 12px 14px rgba(91,30,38,.22))}
+.meteor .trail{position:absolute;right:75px;top:55px;width:420px;height:85px;transform:rotate(-31deg);transform-origin:right center;
+background:linear-gradient(90deg,transparent,rgba(181,69,81,.03) 15%,rgba(181,69,81,.16) 55%,rgba(181,69,81,.34));
+filter:blur(8px);border-radius:100% 15% 15% 100%;z-index:-1}
+.meteor .ghost{position:absolute;width:62px;height:62px;object-fit:contain;opacity:.18;filter:blur(3px);transform-origin:center}
+.meteor .g1{right:170px;top:44px}.meteor .g2{right:240px;top:30px;opacity:.11}.meteor .g3{right:310px;top:12px;opacity:.07}
+.meteor.go{animation:meteorFly 1.65s cubic-bezier(.2,.78,.25,1) forwards}
+@keyframes meteorFly{
+0%{opacity:0;transform:translate(120vw,-25vh) rotate(-9deg) scale(.72)}
+8%{opacity:1}
+62%{opacity:1}
+100%{opacity:0;transform:translate(38vw,28vh) rotate(7deg) scale(1.03)}
+}
+.meteor.m2.go{animation-delay:.72s;animation-duration:1.5s;transform:scale(.78)}
+.meteor.m3.go{animation-delay:1.38s;animation-duration:1.45s;transform:scale(.62)}
+/* normal scrapbook items */
+.item{position:absolute;opacity:0;transform:translate(var(--sx),var(--sy)) scale(.72) rotate(var(--r0));animation:pop .9s var(--delay) cubic-bezier(.22,1,.36,1) forwards;will-change:transform,opacity}
+@keyframes pop{0%{opacity:0;transform:translate(var(--sx),var(--sy)) scale(.72) rotate(var(--r0))}65%{opacity:1}100%{opacity:1;transform:translate(0,0) scale(1) rotate(var(--r))}}
+.flower{width:clamp(42px,10vw,98px);filter:drop-shadow(0 8px 10px rgba(65,25,30,.18))}
+.envelope{width:clamp(150px,29vw,250px);aspect-ratio:1.45;background:#fffaf0;box-shadow:0 18px 30px #6b353c25;overflow:hidden;position:absolute}
+.envelope:before{content:"";position:absolute;inset:0;background:#f3e8db;clip-path:polygon(0 0,100% 0,50% 57%)}
+.envelope:after{content:"";position:absolute;inset:0;background:#e9ddd1;clip-path:polygon(0 100%,50% 45%,100% 100%)}
+.seal{position:absolute;z-index:2;left:50%;top:53%;transform:translate(-50%,-50%);width:29px;height:29px;border-radius:50%;background:#a34d59}
+.photo{width:clamp(112px,24vw,220px);background:#fffdf7;padding:9px;box-shadow:0 16px 27px #4d292d2c;cursor:pointer}
+.photo img{width:100%;display:block;aspect-ratio:1/1.1;object-fit:cover}.caption{text-align:center;font:400 clamp(.9rem,2.5vw,1.35rem) Caveat;padding:7px 0 1px}
+.note{width:clamp(120px,25vw,215px);min-height:90px;padding:16px;background:#fff1d7;box-shadow:0 13px 23px #512c3022;font:400 clamp(1rem,2.7vw,1.5rem) Caveat;line-height:1.05}
+.note.p{background:#f7d4d3}.record{width:clamp(130px,28vw,235px);aspect-ratio:1;border-radius:50%;background:repeating-radial-gradient(circle,#738b79 0 2px,#5f7968 2px 4px);box-shadow:0 18px 28px #3a25272c;display:grid;place-items:center}
+.record:before{content:"";width:42%;aspect-ratio:1;border-radius:50%;background:#e6c29a}.record:after{content:"♡";position:absolute;font:2rem Caveat;color:#7d5158}
+.bouquet{font-size:clamp(4rem,13vw,7rem);filter:drop-shadow(0 18px 15px #4d292d25)}
+.dark{width:clamp(120px,25vw,210px);min-height:105px;background:#292123;color:#fff8ef;padding:18px;display:grid;place-items:center;text-align:center;box-shadow:0 17px 28px #24171a38;font:400 clamp(1rem,2.8vw,1.5rem) Caveat;line-height:1.04}
+.final{position:fixed;inset:0;z-index:50;background:rgba(242,191,198,.97);display:grid;place-items:center;opacity:0;visibility:hidden;transition:1s}
+.final.on{opacity:1;visibility:visible}.finalInner{text-align:center}.finalNames{font-size:clamp(4rem,16vw,8rem);line-height:.7}.finalNames small{display:block;color:#a34b58;font:400 .35em Caveat;margin:.35em}.play{margin-top:55px;border:0;width:70px;height:70px;border-radius:50%;background:#493135;color:#fff;cursor:pointer;box-shadow:0 14px 25px #40262a3b}
+.tools{position:fixed;right:14px;bottom:14px;z-index:100;display:flex;gap:7px}.tool{width:39px;height:39px;border:1px solid #56383d35;border-radius:50%;background:#fff8ef88;color:#4d3337;cursor:pointer}
+.folder{position:fixed;left:14px;bottom:14px;z-index:100;border:1px solid #56383d35;border-radius:20px;background:#fff8ef88;color:#4d3337;padding:8px 13px;cursor:pointer;font:400 1rem Caveat}
+#folderInput{display:none}.progress{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);width:min(250px,42vw);height:2px;background:#5c3a401d;z-index:100}.progress i{display:block;height:100%;width:0;background:#70444b}
+.lightbox{position:fixed;inset:0;z-index:200;background:#24181acc;display:grid;place-items:center;opacity:0;visibility:hidden;transition:.3s}.lightbox.open{opacity:1;visibility:visible}.lightbox img{max-width:90vw;max-height:88svh;background:#fff;padding:10px;box-shadow:0 30px 70px #0007}.close{position:fixed;right:18px;top:18px;border:0;border-radius:50%;width:43px;height:43px;background:#ffffff20;color:#fff;font-size:25px}
+@media(max-height:650px){.stage{height:88svh}.title{top:4%}}
+</style>
+</head>
+<body>
+<main class="app">
+<div class="grain"></div>
+<div class="stage" id="stage">
+  <div class="title"><div class="n">Zoe</div><div class="amp">&amp;</div><div class="n">Jim</div><div class="subtitle">a little collection of us ♡</div></div>
+
+  <!-- three diagonal FLOWER METEORS, matching the reference's fast flower streak -->
+  <div class="meteor" id="meteor1">
+    <div class="trail"></div><img class="ghost g1"><img class="ghost g2"><img class="ghost g3"><img class="head">
+  </div>
+  <div class="meteor m2" id="meteor2">
+    <div class="trail"></div><img class="ghost g1"><img class="ghost g2"><img class="ghost g3"><img class="head">
+  </div>
+  <div class="meteor m3" id="meteor3">
+    <div class="trail"></div><img class="ghost g1"><img class="ghost g2"><img class="ghost g3"><img class="head">
+  </div>
+
+  <img class="item flower" data-delay="2500" style="left:6%;top:39%;--sx:-20px;--sy:20px;--r0:-15deg;--r:-5deg">
+  <img class="item flower" data-delay="2750" style="left:15%;top:31%;--sx:-25px;--sy:10px;--r0:18deg;--r:4deg">
+  <img class="item flower" data-delay="3000" style="left:25%;top:43%;--sx:-15px;--sy:25px;--r0:-12deg;--r:3deg">
+  <img class="item flower" data-delay="3300" style="left:34%;top:35%;--sx:0;--sy:20px;--r0:14deg;--r:7deg">
+  <img class="item flower" data-delay="3550" style="left:43%;top:46%;--sx:10px;--sy:25px;--r0:-18deg;--r:-6deg">
+  <img class="item flower" data-delay="3800" style="left:54%;top:32%;--sx:20px;--sy:10px;--r0:13deg;--r:5deg">
+  <img class="item flower" data-delay="4050" style="left:65%;top:41%;--sx:20px;--sy:20px;--r0:-15deg;--r:-4deg">
+  <img class="item flower" data-delay="4300" style="left:76%;top:31%;--sx:25px;--sy:15px;--r0:16deg;--r:8deg">
+
+  <div class="item envelope" data-delay="5000" style="left:39%;top:43%;--sx:0;--sy:35px;--r0:-5deg;--r:-2deg"><div class="seal"></div></div>
+
+  <div class="item photo" data-delay="6100" data-photo="photo-01" style="left:4%;top:38%;--sx:-30px;--sy:20px;--r0:-14deg;--r:-8deg"><img><div class="caption">that day ♡</div></div>
+  <div class="item photo" data-delay="7000" data-photo="photo-02" style="left:62%;top:48%;--sx:35px;--sy:20px;--r0:15deg;--r:7deg"><img><div class="caption">just us</div></div>
+  <div class="item photo" data-delay="7900" data-photo="photo-03" style="left:28%;top:57%;--sx:-15px;--sy:35px;--r0:-8deg;--r:-3deg"><img><div class="caption">one of my favourites</div></div>
+  <div class="item photo" data-delay="8800" data-photo="photo-04" style="left:49%;top:68%;--sx:25px;--sy:35px;--r0:12deg;--r:4deg"><img><div class="caption">always</div></div>
+
+  <div class="item note p" data-delay="9600" style="left:5%;top:68%;--sx:-25px;--sy:30px;--r0:-10deg;--r:-4deg">you make ordinary days feel a little more special.</div>
+  <div class="item record" data-delay="10400" style="left:16%;top:17%;--sx:-30px;--sy:-20px;--r0:-20deg;--r:4deg"></div>
+  <div class="item bouquet" data-delay="11200" style="left:3%;top:5%;--sx:-20px;--sy:-35px;--r0:-10deg;--r:-3deg">💐</div>
+  <div class="item note" data-delay="12000" style="left:68%;top:72%;--sx:30px;--sy:30px;--r0:12deg;--r:6deg">still my favourite person to do absolutely nothing with.</div>
+  <div class="item dark" data-delay="12800" style="left:10%;top:81%;--sx:-15px;--sy:35px;--r0:-7deg;--r:-2deg">I would<br>choose you<br>again.</div>
+  <div class="item dark" data-delay="13600" style="left:62%;top:84%;--sx:25px;--sy:35px;--r0:8deg;--r:3deg">somewhere<br>between all<br>the little moments,<br>we became us.</div>
+</div>
+
+<section class="final" id="final"><div class="finalInner"><div class="finalNames">Zoe<small>&amp;</small>Jim</div><button class="play" id="replay">▶</button><div style="font:400 1.2rem Caveat;margin-top:14px">play our little story again</div></div></section>
+
+<label class="folder" for="folderInput">📁 load my photos</label>
+<input id="folderInput" type="file" accept="image/*" webkitdirectory multiple>
+<div class="tools"><button class="tool" id="restart">↻</button></div>
+<div class="progress"><i id="bar"></i></div>
+
+<div class="lightbox" id="lightbox"><button class="close" id="close">×</button><img id="large"></div>
+</main>
+
+<script>
+const FLOWERS = ["data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTYwIj4KPGRlZnM+CiA8cmFkaWFsR3JhZGllbnQgaWQ9InAiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmY2ZWYiLz48c3RvcCBvZmZzZXQ9Ii4zNSIgc3RvcC1jb2xvcj0iI2I5NGU1OSIvPjxzdG9wIG9mZnNldD0iLjc4IiBzdG9wLWNvbG9yPSIjYjk0ZTU5Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2YzMDNjIi8+PC9yYWRpYWxHcmFkaWVudD4KIDxmaWx0ZXIgaWQ9InMiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjEuMiIvPjwvZmlsdGVyPgo8L2RlZnM+CjxnIGZpbGw9InVybCgjcCkiPgogPGVsbGlwc2UgY3g9IjgwIiBjeT0iMzQiIHJ4PSIzNCIgcnk9IjQ4Ii8+PGVsbGlwc2UgY3g9IjEyNiIgY3k9IjYyIiByeD0iNDIiIHJ5PSIzMSIvPgogPGVsbGlwc2UgY3g9IjExMiIgY3k9IjExOSIgcng9IjM2IiByeT0iNDIiLz48ZWxsaXBzZSBjeD0iNDgiIGN5PSIxMTkiIHJ4PSIzNiIgcnk9IjQyIi8+CiA8ZWxsaXBzZSBjeD0iMzQiIGN5PSI2MiIgcng9IjQyIiByeT0iMzEiLz4KPC9nPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIyMyIgZmlsbD0iI2Q5YTI0YyIvPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIxMCIgZmlsbD0iIzhmNGMzOSIvPgo8L3N2Zz4=", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTYwIj4KPGRlZnM+CiA8cmFkaWFsR3JhZGllbnQgaWQ9InAiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmY2ZWYiLz48c3RvcCBvZmZzZXQ9Ii4zNSIgc3RvcC1jb2xvcj0iI2Q5NmI3NiIvPjxzdG9wIG9mZnNldD0iLjc4IiBzdG9wLWNvbG9yPSIjZDk2Yjc2Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2YzMDNjIi8+PC9yYWRpYWxHcmFkaWVudD4KIDxmaWx0ZXIgaWQ9InMiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjEuMiIvPjwvZmlsdGVyPgo8L2RlZnM+CjxnIGZpbGw9InVybCgjcCkiPgogPGVsbGlwc2UgY3g9IjgwIiBjeT0iMzQiIHJ4PSIzNCIgcnk9IjQ4Ii8+PGVsbGlwc2UgY3g9IjEyNiIgY3k9IjYyIiByeD0iNDIiIHJ5PSIzMSIvPgogPGVsbGlwc2UgY3g9IjExMiIgY3k9IjExOSIgcng9IjM2IiByeT0iNDIiLz48ZWxsaXBzZSBjeD0iNDgiIGN5PSIxMTkiIHJ4PSIzNiIgcnk9IjQyIi8+CiA8ZWxsaXBzZSBjeD0iMzQiIGN5PSI2MiIgcng9IjQyIiByeT0iMzEiLz4KPC9nPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIyMyIgZmlsbD0iI2Q5YTI0YyIvPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIxMCIgZmlsbD0iIzhmNGMzOSIvPgo8L3N2Zz4=", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTYwIj4KPGRlZnM+CiA8cmFkaWFsR3JhZGllbnQgaWQ9InAiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmY2ZWYiLz48c3RvcCBvZmZzZXQ9Ii4zNSIgc3RvcC1jb2xvcj0iI2M5NTc2MyIvPjxzdG9wIG9mZnNldD0iLjc4IiBzdG9wLWNvbG9yPSIjYzk1NzYzIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2YzMDNjIi8+PC9yYWRpYWxHcmFkaWVudD4KIDxmaWx0ZXIgaWQ9InMiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjEuMiIvPjwvZmlsdGVyPgo8L2RlZnM+CjxnIGZpbGw9InVybCgjcCkiPgogPGVsbGlwc2UgY3g9IjgwIiBjeT0iMzQiIHJ4PSIzNCIgcnk9IjQ4Ii8+PGVsbGlwc2UgY3g9IjEyNiIgY3k9IjYyIiByeD0iNDIiIHJ5PSIzMSIvPgogPGVsbGlwc2UgY3g9IjExMiIgY3k9IjExOSIgcng9IjM2IiByeT0iNDIiLz48ZWxsaXBzZSBjeD0iNDgiIGN5PSIxMTkiIHJ4PSIzNiIgcnk9IjQyIi8+CiA8ZWxsaXBzZSBjeD0iMzQiIGN5PSI2MiIgcng9IjQyIiByeT0iMzEiLz4KPC9nPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIyMyIgZmlsbD0iI2Q5YTI0YyIvPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIxMCIgZmlsbD0iIzhmNGMzOSIvPgo8L3N2Zz4=", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTYwIj4KPGRlZnM+CiA8cmFkaWFsR3JhZGllbnQgaWQ9InAiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmY2ZWYiLz48c3RvcCBvZmZzZXQ9Ii4zNSIgc3RvcC1jb2xvcj0iI2U5OGY5OSIvPjxzdG9wIG9mZnNldD0iLjc4IiBzdG9wLWNvbG9yPSIjZTk4Zjk5Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2YzMDNjIi8+PC9yYWRpYWxHcmFkaWVudD4KIDxmaWx0ZXIgaWQ9InMiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjEuMiIvPjwvZmlsdGVyPgo8L2RlZnM+CjxnIGZpbGw9InVybCgjcCkiPgogPGVsbGlwc2UgY3g9IjgwIiBjeT0iMzQiIHJ4PSIzNCIgcnk9IjQ4Ii8+PGVsbGlwc2UgY3g9IjEyNiIgY3k9IjYyIiByeD0iNDIiIHJ5PSIzMSIvPgogPGVsbGlwc2UgY3g9IjExMiIgY3k9IjExOSIgcng9IjM2IiByeT0iNDIiLz48ZWxsaXBzZSBjeD0iNDgiIGN5PSIxMTkiIHJ4PSIzNiIgcnk9IjQyIi8+CiA8ZWxsaXBzZSBjeD0iMzQiIGN5PSI2MiIgcng9IjQyIiByeT0iMzEiLz4KPC9nPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIyMyIgZmlsbD0iI2Q5YTI0YyIvPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIxMCIgZmlsbD0iIzhmNGMzOSIvPgo8L3N2Zz4=", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTYwIj4KPGRlZnM+CiA8cmFkaWFsR3JhZGllbnQgaWQ9InAiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmY2ZWYiLz48c3RvcCBvZmZzZXQ9Ii4zNSIgc3RvcC1jb2xvcj0iI2E5NDM1MCIvPjxzdG9wIG9mZnNldD0iLjc4IiBzdG9wLWNvbG9yPSIjYTk0MzUwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2YzMDNjIi8+PC9yYWRpYWxHcmFkaWVudD4KIDxmaWx0ZXIgaWQ9InMiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjEuMiIvPjwvZmlsdGVyPgo8L2RlZnM+CjxnIGZpbGw9InVybCgjcCkiPgogPGVsbGlwc2UgY3g9IjgwIiBjeT0iMzQiIHJ4PSIzNCIgcnk9IjQ4Ii8+PGVsbGlwc2UgY3g9IjEyNiIgY3k9IjYyIiByeD0iNDIiIHJ5PSIzMSIvPgogPGVsbGlwc2UgY3g9IjExMiIgY3k9IjExOSIgcng9IjM2IiByeT0iNDIiLz48ZWxsaXBzZSBjeD0iNDgiIGN5PSIxMTkiIHJ4PSIzNiIgcnk9IjQyIi8+CiA8ZWxsaXBzZSBjeD0iMzQiIGN5PSI2MiIgcng9IjQyIiByeT0iMzEiLz4KPC9nPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIyMyIgZmlsbD0iI2Q5YTI0YyIvPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIxMCIgZmlsbD0iIzhmNGMzOSIvPgo8L3N2Zz4=", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTYwIj4KPGRlZnM+CiA8cmFkaWFsR3JhZGllbnQgaWQ9InAiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmY2ZWYiLz48c3RvcCBvZmZzZXQ9Ii4zNSIgc3RvcC1jb2xvcj0iI2Q5N2I4NCIvPjxzdG9wIG9mZnNldD0iLjc4IiBzdG9wLWNvbG9yPSIjZDk3Yjg0Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2YzMDNjIi8+PC9yYWRpYWxHcmFkaWVudD4KIDxmaWx0ZXIgaWQ9InMiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjEuMiIvPjwvZmlsdGVyPgo8L2RlZnM+CjxnIGZpbGw9InVybCgjcCkiPgogPGVsbGlwc2UgY3g9IjgwIiBjeT0iMzQiIHJ4PSIzNCIgcnk9IjQ4Ii8+PGVsbGlwc2UgY3g9IjEyNiIgY3k9IjYyIiByeD0iNDIiIHJ5PSIzMSIvPgogPGVsbGlwc2UgY3g9IjExMiIgY3k9IjExOSIgcng9IjM2IiByeT0iNDIiLz48ZWxsaXBzZSBjeD0iNDgiIGN5PSIxMTkiIHJ4PSIzNiIgcnk9IjQyIi8+CiA8ZWxsaXBzZSBjeD0iMzQiIGN5PSI2MiIgcng9IjQyIiByeT0iMzEiLz4KPC9nPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIyMyIgZmlsbD0iI2Q5YTI0YyIvPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIxMCIgZmlsbD0iIzhmNGMzOSIvPgo8L3N2Zz4=", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAgMTYwIj4KPGRlZnM+CiA8cmFkaWFsR3JhZGllbnQgaWQ9InAiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmY2ZWYiLz48c3RvcCBvZmZzZXQ9Ii4zNSIgc3RvcC1jb2xvcj0iI2VmYWRiMyIvPjxzdG9wIG9mZnNldD0iLjc4IiBzdG9wLWNvbG9yPSIjZWZhZGIzIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN2YzMDNjIi8+PC9yYWRpYWxHcmFkaWVudD4KIDxmaWx0ZXIgaWQ9InMiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjEuMiIvPjwvZmlsdGVyPgo8L2RlZnM+CjxnIGZpbGw9InVybCgjcCkiPgogPGVsbGlwc2UgY3g9IjgwIiBjeT0iMzQiIHJ4PSIzNCIgcnk9IjQ4Ii8+PGVsbGlwc2UgY3g9IjEyNiIgY3k9IjYyIiByeD0iNDIiIHJ5PSIzMSIvPgogPGVsbGlwc2UgY3g9IjExMiIgY3k9IjExOSIgcng9IjM2IiByeT0iNDIiLz48ZWxsaXBzZSBjeD0iNDgiIGN5PSIxMTkiIHJ4PSIzNiIgcnk9IjQyIi8+CiA8ZWxsaXBzZSBjeD0iMzQiIGN5PSI2MiIgcng9IjQyIiByeT0iMzEiLz4KPC9nPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIyMyIgZmlsbD0iI2Q5YTI0YyIvPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSIxMCIgZmlsbD0iIzhmNGMzOSIvPgo8L3N2Zz4="];
+const PHOTOS = ["data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgNTYwIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiNjNzhmOTEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlZmNmY2EiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSI1NjAiIGZpbGw9IiNmZmZkZjciLz48cmVjdCB4PSIyNCIgeT0iMjQiIHdpZHRoPSI0NTIiIGhlaWdodD0iNDUyIiBmaWxsPSJ1cmwoI2cpIi8+CjxjaXJjbGUgY3g9IjE4MCIgY3k9IjIwNSIgcj0iNzgiIGZpbGw9IiNmNGQ2ZDAiIG9wYWNpdHk9Ii43MiIvPgo8cGF0aCBkPSJNNTUgNDIwIFExNzAgMjkwIDI3NSAzODAgUTM1MCAyOTAgNDQ1IDQxNSBWNDc2IEg1NVoiIGZpbGw9IiM3YjU1NWIiIG9wYWNpdHk9Ii44NCIvPgo8dGV4dCB4PSIyNTAiIHk9IjUyNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiM2ODQ1NGEiPnlvdXIgcGhvdG8gMTwvdGV4dD4KPC9zdmc+", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgNTYwIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiNkN2E1YTAiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlZmNmY2EiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSI1NjAiIGZpbGw9IiNmZmZkZjciLz48cmVjdCB4PSIyNCIgeT0iMjQiIHdpZHRoPSI0NTIiIGhlaWdodD0iNDUyIiBmaWxsPSJ1cmwoI2cpIi8+CjxjaXJjbGUgY3g9IjIxMCIgY3k9IjIwNSIgcj0iNzgiIGZpbGw9IiNmNGQ2ZDAiIG9wYWNpdHk9Ii43MiIvPgo8cGF0aCBkPSJNNTUgNDIwIFExNzAgMjkwIDI3NSAzODAgUTM1MCAyOTAgNDQ1IDQxNSBWNDc2IEg1NVoiIGZpbGw9IiM4ZDY1NjUiIG9wYWNpdHk9Ii44NCIvPgo8dGV4dCB4PSIyNTAiIHk9IjUyNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiM2ODQ1NGEiPnlvdXIgcGhvdG8gMjwvdGV4dD4KPC9zdmc+", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgNTYwIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiNiNzhkOTEiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlZmNmY2EiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSI1NjAiIGZpbGw9IiNmZmZkZjciLz48cmVjdCB4PSIyNCIgeT0iMjQiIHdpZHRoPSI0NTIiIGhlaWdodD0iNDUyIiBmaWxsPSJ1cmwoI2cpIi8+CjxjaXJjbGUgY3g9IjI0MCIgY3k9IjIwNSIgcj0iNzgiIGZpbGw9IiNmNGQ2ZDAiIG9wYWNpdHk9Ii43MiIvPgo8cGF0aCBkPSJNNTUgNDIwIFExNzAgMjkwIDI3NSAzODAgUTM1MCAyOTAgNDQ1IDQxNSBWNDc2IEg1NVoiIGZpbGw9IiM3MDUxNTciIG9wYWNpdHk9Ii44NCIvPgo8dGV4dCB4PSIyNTAiIHk9IjUyNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiM2ODQ1NGEiPnlvdXIgcGhvdG8gMzwvdGV4dD4KPC9zdmc+", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgNTYwIj4KPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4Mj0iMSIgeTI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiNkNGIwOWUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlZmNmY2EiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjUwMCIgaGVpZ2h0PSI1NjAiIGZpbGw9IiNmZmZkZjciLz48cmVjdCB4PSIyNCIgeT0iMjQiIHdpZHRoPSI0NTIiIGhlaWdodD0iNDUyIiBmaWxsPSJ1cmwoI2cpIi8+CjxjaXJjbGUgY3g9IjI3MCIgY3k9IjIwNSIgcj0iNzgiIGZpbGw9IiNmNGQ2ZDAiIG9wYWNpdHk9Ii43MiIvPgo8cGF0aCBkPSJNNTUgNDIwIFExNzAgMjkwIDI3NSAzODAgUTM1MCAyOTAgNDQ1IDQxNSBWNDc2IEg1NVoiIGZpbGw9IiM4MDY0NWIiIG9wYWNpdHk9Ii44NCIvPgo8dGV4dCB4PSIyNTAiIHk9IjUyNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiM2ODQ1NGEiPnlvdXIgcGhvdG8gNDwvdGV4dD4KPC9zdmc+"];
+const flowerEls=[...document.querySelectorAll(".flower")];
+flowerEls.forEach((el,i)=>el.src=FLOWERS[i%FLOWERS.length]);
+
+document.querySelectorAll(".meteor").forEach((m,i)=>{
+  const src=FLOWERS[i%FLOWERS.length];
+  m.querySelectorAll("img").forEach(x=>x.src=src);
+});
+
+const photoEls=[...document.querySelectorAll(".photo")];
+photoEls.forEach((el,i)=>el.querySelector("img").src=PHOTOS[i%PHOTOS.length]);
+
+let photoMap={};
+function loadFolder(files){
+  [...files].filter(f=>f.type.startsWith("image/")).forEach(f=>{
+    const key=f.name.toLowerCase().replace(/\.[^.]+$/,"");
+    photoMap[key]=URL.createObjectURL(f);
+  });
+  photoEls.forEach((el,i)=>{
+    const key=el.dataset.photo;
+    const match=Object.keys(photoMap).find(k=>k===key || k.includes(key));
+    if(match) el.querySelector("img").src=photoMap[match];
+  });
+}
+document.getElementById("folderInput").addEventListener("change",e=>loadFolder(e.target.files));
+
+const final=document.getElementById("final"),bar=document.getElementById("bar");
+let start=0,timer;
+const END=14800;
+
+function reset(){
+  clearInterval(timer);
+  final.classList.remove("on");
+  document.querySelectorAll(".meteor").forEach(m=>{
+    m.classList.remove("go"); void m.offsetWidth; m.classList.add("go");
+  });
+  document.querySelectorAll(".item").forEach(el=>{
+    const delay=Number(el.dataset.delay||0);
+    el.style.animation="none"; void el.offsetWidth;
+    el.style.animation=`pop .9s ${delay}ms cubic-bezier(.22,1,.36,1) forwards`;
+  });
+  start=performance.now();
+  timer=setInterval(()=>{
+    const p=Math.min(100,(performance.now()-start)/END*100);
+    bar.style.width=p+"%";
+    if(p>=100){clearInterval(timer);final.classList.add("on")}
+  },50);
+}
+document.getElementById("restart").onclick=reset;
+document.getElementById("replay").onclick=reset;
+
+const lb=document.getElementById("lightbox"),large=document.getElementById("large");
+photoEls.forEach(el=>el.addEventListener("click",()=>{
+  large.src=el.querySelector("img").src; lb.classList.add("open");
+}));
+document.getElementById("close").onclick=()=>lb.classList.remove("open");
+lb.addEventListener("click",e=>{if(e.target===lb)lb.classList.remove("open")});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("open")});
+
+reset();
+</script>
+</body>
+</html>
