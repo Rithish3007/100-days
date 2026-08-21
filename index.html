@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Zoe & Jim — our little story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{background:#0b0d10;color:#4d3032;font-family:"Cormorant Garamond",serif}
+button{font:inherit}
+.stage{position:relative;width:100vw;height:100svh;display:grid;place-items:center;background:#0b0d10}
+.story{position:relative;width:min(100vw,1440px);height:min(100svh,700px);overflow:hidden;
+background:
+radial-gradient(ellipse at 50% 45%,rgba(255,242,235,.6),transparent 55%),
+linear-gradient(135deg,#f8d6d9 0%,#eebfc5 50%,#f4ccd0 100%)}
+.story:before{content:"";position:absolute;inset:0;opacity:.13;pointer-events:none;
+background:repeating-linear-gradient(0deg,rgba(87,46,52,.13) 0 1px,transparent 1px 4px),
+repeating-linear-gradient(90deg,rgba(255,255,255,.14) 0 1px,transparent 1px 5px)}
+.story:after{content:"";position:absolute;inset:0;pointer-events:none;
+background:radial-gradient(ellipse at center,transparent 48%,rgba(111,52,61,.12) 100%)}
+
+.title{position:absolute;z-index:8;left:7%;top:18%;opacity:0;animation:titleIn 1.5s .25s forwards cubic-bezier(.22,1,.36,1)}
+.title .n{font-size:clamp(48px,7vw,92px);line-height:.7;font-weight:500;letter-spacing:-.04em}
+.title .and{font-family:Caveat,cursive;color:#9d4a56;font-size:28px;margin:16px 0 12px 9px;transform:rotate(-9deg)}
+.title p{font-family:Caveat,cursive;font-size:22px;margin:24px 0 0 4px;opacity:.75}
+@keyframes titleIn{to{opacity:1;transform:translateY(0)}from{opacity:0;transform:translateY(15px)}}
+
+.flower{position:absolute;width:clamp(54px,7vw,100px);z-index:5;opacity:0;transform:translateY(-30px) scale(.65) rotate(var(--r0));
+animation:flowerIn .9s var(--d) forwards cubic-bezier(.22,1,.36,1);filter:drop-shadow(0 9px 8px rgba(74,28,34,.18))}
+@keyframes flowerIn{to{opacity:1;transform:translateY(0) scale(1) rotate(var(--r))}}
+
+.flower.wide{width:clamp(70px,9vw,125px)}
+.center-flower{position:absolute;left:50%;top:40%;width:75px;transform:translate(-50%,-50%);opacity:0;
+animation:fadeCenter 1s 7.3s forwards}
+@keyframes fadeCenter{to{opacity:.95}}
+
+.envelope{position:absolute;left:50%;top:54%;width:min(245px,23vw);aspect-ratio:1.55;transform:translate(-50%,-50%) scale(.75) rotate(-1deg);
+opacity:0;background:#fff7ea;box-shadow:0 22px 35px rgba(74,35,40,.22);z-index:10;
+animation:envIn 1.1s 8.6s forwards cubic-bezier(.22,1,.36,1);overflow:hidden}
+.envelope:before{content:"";position:absolute;inset:0;background:#eee0d3;clip-path:polygon(0 0,100% 0,50% 58%)}
+.envelope:after{content:"";position:absolute;inset:0;background:#f8ecdf;clip-path:polygon(0 100%,50% 45%,100% 100%)}
+.seal{position:absolute;z-index:2;left:50%;top:55%;width:30px;height:30px;transform:translate(-50%,-50%);
+border-radius:50%;background:#9e4855;color:#fff;display:grid;place-items:center;font-family:Caveat,cursive;font-size:17px}
+.seal:after{content:"♡"}
+.env-label{position:absolute;z-index:4;left:50%;top:-34px;transform:translateX(-50%);font-family:Caveat,cursive;font-size:20px;white-space:nowrap}
+@keyframes envIn{to{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-1deg)}}
+
+.memory{position:absolute;z-index:20;opacity:0;animation:memoryIn 1s var(--d) forwards cubic-bezier(.22,1,.36,1)}
+.memory img{display:block}
+@keyframes memoryIn{0%{opacity:0;transform:translate(var(--sx),var(--sy)) scale(.76) rotate(var(--r0))}
+60%{opacity:1}100%{opacity:1;transform:translate(0,0) scale(1) rotate(var(--r))}}
+
+.polaroid{width:clamp(120px,14vw,185px);background:#fffdf8;padding:8px 8px 24px;box-shadow:0 20px 30px rgba(59,27,31,.22);cursor:pointer}
+.polaroid img{width:100%;height:clamp(125px,13vw,165px);object-fit:cover}
+.polaroid small{position:absolute;bottom:4px;left:0;width:100%;text-align:center;font-family:Caveat,cursive;font-size:17px;color:#665052}
+
+.main-card{width:clamp(260px,31vw,390px);filter:drop-shadow(0 20px 25px rgba(63,30,34,.2));cursor:pointer}
+.main-card img{width:100%;display:block}
+
+.bouquet{width:clamp(140px,17vw,225px);filter:drop-shadow(0 18px 18px rgba(62,31,33,.25));cursor:pointer}
+.bouquet img{width:100%;display:block}
+
+.jobs{width:clamp(190px,22vw,290px);border-radius:4px;box-shadow:0 16px 22px rgba(35,20,22,.28);cursor:pointer}
+.spotify{width:clamp(170px,20vw,270px);border-radius:6px;box-shadow:0 13px 20px rgba(35,20,22,.2);cursor:pointer}
+.map{width:clamp(220px,25vw,330px);box-shadow:0 16px 22px rgba(52,29,30,.18);cursor:pointer}
+
+.black-note{width:clamp(190px,22vw,300px);padding:20px 22px;background:#242021;color:#fff6ef;border-radius:5px;
+font-family:Caveat,cursive;font-size:clamp(17px,2vw,25px);line-height:1.05;box-shadow:0 18px 25px rgba(30,18,19,.28);cursor:pointer}
+
+.timeline-text{position:absolute;z-index:7;left:50%;top:78%;transform:translate(-50%,-50%);font-family:Caveat,cursive;
+font-size:21px;opacity:0;animation:captionIn 1s 9.8s forwards;color:#785159}
+@keyframes captionIn{to{opacity:.8}}
+
+.hint{position:absolute;z-index:40;left:50%;bottom:22px;transform:translateX(-50%);font-family:Caveat,cursive;font-size:18px;
+color:#70474d;opacity:.7;white-space:nowrap}
+
+.replay{position:absolute;right:18px;bottom:18px;z-index:50;border:1px solid rgba(70,39,44,.2);background:rgba(255,248,240,.4);
+width:40px;height:40px;border-radius:50%;color:#633f44;cursor:pointer;backdrop-filter:blur(5px)}
+
+.lightbox{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:rgba(20,14,16,.78);
+opacity:0;visibility:hidden;transition:.35s;padding:20px}
+.lightbox.open{opacity:1;visibility:visible}
+.lightbox img{max-width:90vw;max-height:90svh;background:white;padding:10px;box-shadow:0 25px 70px #0006;transform:scale(.86);transition:.45s cubic-bezier(.22,1,.36,1)}
+.lightbox.open img{transform:scale(1)}
+.close{position:fixed;top:20px;right:20px;border:0;background:#ffffff20;color:#fff;width:44px;height:44px;border-radius:50%;font-size:26px;cursor:pointer}
+
+@media(max-width:700px){
+.story{height:100svh}
+.title{left:8%;top:16%}.title .n{font-size:clamp(42px,13vw,72px)}
+.title p{font-size:17px}
+.flower{width:clamp(42px,12vw,68px)}
+.envelope{width:180px;top:50%}
+.env-label{font-size:16px}
+.main-card{width:290px}
+.bouquet{width:145px}
+.jobs{width:185px}
+.spotify{width:170px}
+.map{width:215px}
+.black-note{width:190px;font-size:18px}
+.polaroid{width:120px;padding:6px 6px 20px}.polaroid img{height:120px}
+.hint{font-size:15px;bottom:12px}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:1ms!important;transition-duration:1ms!important}}
+</style>
+</head>
+<body>
+<div class="stage">
+  <main class="story" id="story">
+    <div class="title"><div class="n">Zoe</div><div class="and">&amp;</div><div class="n">Jim</div><p>a little collection of us</p></div>
+
+    <!-- Flower border: deliberately automatic instead of the scratching interaction. -->
+    <img class="flower wide" src="assets/flower-1.svg" style="left:1%;top:8%;--d:1.5s;--r0:-18deg;--r:-8deg">
+    <img class="flower" src="assets/flower-2.svg" style="left:8%;top:22%;--d:1.9s;--r0:20deg;--r:7deg">
+    <img class="flower wide" src="assets/flower-3.svg" style="left:15%;top:6%;--d:2.2s;--r0:-10deg;--r:4deg">
+    <img class="flower" src="assets/flower-4.svg" style="left:23%;top:21%;--d:2.6s;--r0:15deg;--r:-3deg">
+    <img class="flower wide" src="assets/flower-5.svg" style="left:31%;top:4%;--d:2.9s;--r0:-20deg;--r:6deg">
+    <img class="flower" src="assets/flower-6.svg" style="left:40%;top:17%;--d:3.3s;--r0:10deg;--r:-7deg">
+    <img class="flower wide" src="assets/flower-7.svg" style="left:49%;top:2%;--d:3.7s;--r0:-12deg;--r:4deg">
+    <img class="flower" src="assets/flower-1.svg" style="left:57%;top:18%;--d:4.0s;--r0:18deg;--r:8deg">
+    <img class="flower wide" src="assets/flower-2.svg" style="left:65%;top:4%;--d:4.4s;--r0:-18deg;--r:-4deg">
+    <img class="flower" src="assets/flower-3.svg" style="left:74%;top:20%;--d:4.7s;--r0:15deg;--r:5deg">
+    <img class="flower wide" src="assets/flower-4.svg" style="left:82%;top:5%;--d:5.1s;--r0:-8deg;--r:7deg">
+    <img class="flower" src="assets/flower-5.svg" style="left:90%;top:17%;--d:5.4s;--r0:25deg;--r:-5deg">
+    <img class="flower" src="assets/flower-6.svg" style="left:4%;top:35%;--d:5.8s;--r0:15deg;--r:4deg">
+    <img class="flower" src="assets/flower-7.svg" style="left:92%;top:34%;--d:6.2s;--r0:-15deg;--r:-8deg">
+
+    <div class="center-flower">🌸</div>
+
+    <div class="envelope">
+      <div class="env-label">just for you</div><div class="seal"></div>
+    </div>
+    <div class="timeline-text">open the little things...</div>
+
+    <!-- Final collage elements, each pops in automatically. -->
+    <div class="memory polaroid" style="left:9%;top:44%;--d:12.4s;--sx:-30px;--sy:15px;--r0:-15deg;--r:-8deg">
+      <img src="assets/memory-photo-1.jpg"><small>that day ♡</small>
+    </div>
+    <div class="memory polaroid" style="left:13%;top:60%;--d:13.1s;--sx:-15px;--sy:30px;--r0:10deg;--r:5deg">
+      <img src="assets/memory-photo-2.jpg"><small>one of my favourites</small>
+    </div>
+
+    <div class="memory main-card" style="left:32%;top:42%;--d:13.8s;--sx:0;--sy:45px;--r0:-3deg;--r:-2deg">
+      <img src="assets/yin-yang-card.jpg" alt="handmade yin-yang card">
+    </div>
+
+    <div class="memory bouquet" style="left:1%;top:61%;--d:14.6s;--sx:-35px;--sy:25px;--r0:-8deg;--r:-3deg">
+      <img src="assets/bouquet.jpg" alt="bouquet">
+    </div>
+
+    <div class="memory jobs" style="left:68%;top:32%;--d:15.2s;--sx:35px;--sy:-25px;--r0:8deg;--r:5deg">
+      <img src="assets/jobs-card.jpg" alt="Steve Jobs card">
+    </div>
+
+    <div class="memory spotify" style="left:62%;top:48%;--d:16s;--sx:30px;--sy:0;--r0:5deg;--r:2deg">
+      <img src="assets/spotify-card.jpg" alt="music card">
+    </div>
+
+    <div class="memory map" style="left:43%;top:78%;--d:16.7s;--sx:15px;--sy:35px;--r0:-4deg;--r:1deg">
+      <img src="assets/memory-map.jpg" alt="memory map">
+    </div>
+
+    <div class="memory black-note" style="left:67%;top:60%;--d:17.4s;--sx:35px;--sy:-10px;--r0:9deg;--r:6deg">
+      It is not a biography.<br>It's a collection of little things that became us.
+    </div>
+
+    <div class="hint">every little thing appears on its own ♡</div>
+    <button class="replay" id="replay" aria-label="Replay">↻</button>
+  </main>
+</div>
+
+<div class="lightbox" id="lightbox"><button class="close" id="close">×</button><img id="zoom" alt=""></div>
+
+<script>
+const story=document.getElementById('story');
+const replay=document.getElementById('replay');
+const lightbox=document.getElementById('lightbox');
+const zoom=document.getElementById('zoom');
+
+function restart(){
+  document.querySelectorAll('.flower,.envelope,.timeline-text,.memory,.center-flower').forEach(el=>{
+    const anim=el.style.animation;
+    el.style.animation='none';
+    el.offsetHeight;
+    el.style.animation=anim;
+  });
+}
+replay.addEventListener('click',restart);
+
+document.querySelectorAll('.polaroid,.main-card,.bouquet,.jobs,.spotify,.map,.black-note').forEach(el=>{
+  el.addEventListener('click',()=>{
+    const img=el.querySelector('img');
+    if(!img)return;
+    zoom.src=img.src; lightbox.classList.add('open');
+  });
+});
+document.getElementById('close').onclick=()=>lightbox.classList.remove('open');
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)lightbox.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lightbox.classList.remove('open')});
+</script>
+</body>
+</html>
